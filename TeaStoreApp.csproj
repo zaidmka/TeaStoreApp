@@ -50,24 +50,68 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\cart.png" />
+	  <None Remove="Resources\Images\cart_25.png" />
 	  <None Remove="Resources\Images\delete.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\edit_25.png" />
 	  <None Remove="Resources\Images\faq.png" />
 	  <None Remove="Resources\Images\heart.png" />
 	  <None Remove="Resources\Images\heartfill.png" />
+	  <None Remove="Resources\Images\heart_25.png" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\home_25.png" />
 	  <None Remove="Resources\Images\leftarrow.png" />
 	  <None Remove="Resources\Images\orders.png" />
 	  <None Remove="Resources\Images\profile.png" />
 	  <None Remove="Resources\Images\profilesettings.png" />
+	  <None Remove="Resources\Images\profile_25.png" />
 	  <None Remove="Resources\Images\rightarrow.png" />
 	  <None Remove="Resources\Images\storelogo.png" />
 	  <None Remove="Resources\Images\uploadphoto.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\AddressPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\CartPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FavoritePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\OrderDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\OrdersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ProductDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ProductListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SignupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

@@ -4,11 +4,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TeaStoreApp"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:pages="clr-namespace:TeaStoreApp.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarTitleColor="red"
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    
+    
+    >
 
+    <TabBar>
+        <Tab Title="Home" Icon="home">
+            <ShellContent ContentTemplate="{DataTemplate pages:HomePage}"/>
+        </Tab>
+
+        <Tab Title="Cart" Icon="cart">
+            <ShellContent ContentTemplate="{DataTemplate pages:CartPage}"/>
+        </Tab>
+
+        <Tab Title="Favorites" Icon="heart">
+            <ShellContent ContentTemplate="{DataTemplate pages:FavoritePage}"/>
+        </Tab>
+
+        <Tab Title="Profile" Icon="profile">
+            <ShellContent ContentTemplate="{DataTemplate pages:ProfilePage}"/>
+        </Tab>
+        <Tab Title="Maui" Icon="dotnet_bot">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
+        </Tab>
+        <!--<ShellContent
+            Title="Home"
+            Icon="home"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="HomePage" />
+        <ShellContent
+             Title="Cart"
+             Icon="cart"
+             ContentTemplate="{DataTemplate pages:CartPage}"
+             Route="CartPage" />
+        <ShellContent
+             Title="Favorite"
+             Icon="heart"
+             ContentTemplate="{DataTemplate pages:FavoritePage}"
+             Route="FavoritePage" />    
+        <ShellContent
+             Title="Profile"
+             Icon="profile"
+             ContentTemplate="{DataTemplate pages:ProfilePage}"
+             Route="ProfilePage" />-->
+
+    </TabBar>
 </Shell>

@@ -23,6 +23,8 @@ namespace TeaStoreApp.Models
 
         [JsonProperty("productImage")]
         public string ProductImage { get; set; }
+        public string FullImageUrl => AppSettings.ApiUrl + ProductImage;
+
 
         [JsonProperty("productPrice")]
         public int ProductPrice { get; set; }
