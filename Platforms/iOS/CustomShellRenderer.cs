@@ -41,20 +41,32 @@ namespace TeaStoreApp.Platforms.iOS
 
         public void UpdateLayout(UITabBarController controller)
         {
-            //throw new NotImplementedException();
+            // Define the color you want to use for the tab bar items
+            var selectItemColor = UIColor.FromRGB(0, 0, 0); // Red color
+            var unselectItemColor = UIColor.FromRGB(255, 128, 0); // Red color
 
-            foreach (var tabbarItem in controller.TabBar.Items)
+            foreach (var tabBarItem in controller.TabBar.Items)
             {
-                var prevImage = tabbarItem.Image;//.Copy() as UIImage;
+                var prevImage = tabBarItem.Image;
+
+                // Resize the image as before
                 var size = new CGSize(25, 25);
                 UIGraphics.BeginImageContextWithOptions(size, false, 0);
                 prevImage.Draw(new CGRect(new CGPoint(0, 0), size));
                 var resizedImage = UIGraphics.GetImageFromCurrentImageContext();
                 UIGraphics.EndImageContext();
-                tabbarItem.Image = resizedImage;
-                
+
+                // Set both the normal and selected images with template rendering mode
+                tabBarItem.Image = resizedImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+                tabBarItem.SelectedImage = resizedImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+
+                // Set the colors for the tab bar item
+                controller.TabBar.TintColor = selectItemColor; // Color for the selected item
+                controller.TabBar.UnselectedItemTintColor = unselectItemColor; // Also sets the unselected item color to maintain uniformity
             }
         }
+
+
     }
 }
 

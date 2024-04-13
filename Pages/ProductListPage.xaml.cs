@@ -22,7 +22,7 @@ public partial class ProductListPage : ContentPage
     {
         var currentSelection = e.CurrentSelection.FirstOrDefault() as Product;
         if (currentSelection == null) return;
-        Navigation.PushAsync(new ProductDetailPage(currentSelection.Id));
+        Navigation.PushAsync(new ProductDetailPage(currentSelection.Id, currentSelection.Name));
         ((CollectionView)sender).SelectedItem = null;
     }
 }

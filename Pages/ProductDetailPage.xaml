@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeaStoreApp.Pages.ProductDetailPage"
-             Title="ProductDetailPage">
+             Title=""
+             Shell.NavBarIsVisible="True"
+
+             >
+
     <Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
         <Image Grid.Row="0"
                Grid.Column="0"
@@ -10,19 +14,17 @@
                HeightRequest="280"
                VerticalOptions="Start"
                Aspect="AspectFill" />
-
-        <ImageButton Grid.Row="0"
-                     HeightRequest="40"
-                     WidthRequest="40"
-                     CornerRadius="15"
-                     Margin="20"
-                     Padding="5"
-                     Source="heart"
-                     BackgroundColor="White"
-                     HorizontalOptions="End"
-                     VerticalOptions="Start"
-                     x:Name="ImgBtnFavorite"
-                     Clicked="ImgBtnFavorite_Clicked"/>
+        <Button  Grid.Row="0" 
+                 ImageSource="heart" 
+                 Clicked="FavButton_Clicked" 
+                 Margin="20" Padding="5" 
+                 HeightRequest="40" 
+                 WidthRequest="40" 
+                 HorizontalOptions="End"
+                 VerticalOptions="Start"
+                 x:Name="FavButton"
+                 BackgroundColor="Transparent"
+                 />
 
         <HorizontalStackLayout Spacing="20"
                                HorizontalOptions="Center"
@@ -35,8 +37,6 @@
                     MaximumHeightRequest="40"
                     MaximumWidthRequest="40"
                     CornerRadius="10"
-                    BackgroundColor="#18565f"
-                    TextColor="White"
                     Text="-"
                     Padding="0"
                     FontSize="30"
@@ -55,8 +55,6 @@
                     MaximumHeightRequest="40"
                     MaximumWidthRequest="40"
                     CornerRadius="10"
-                    BackgroundColor="#18565f"
-                    TextColor="White"
                     Text="+"
                     Padding="0"
                     FontSize="30"
@@ -100,7 +98,8 @@
                        VerticalOptions="Center"
                        HorizontalOptions="Center" />
                 <Label VerticalOptions="Center"
-                       HorizontalOptions="Center">
+                       HorizontalOptions="Center"
+                       TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
@@ -116,8 +115,6 @@
                     CornerRadius="0"
                     Padding="30"
                     Margin="0,0,0,5"
-                    BackgroundColor="#18565f"
-                    TextColor="White"
                     x:Name="BtnAddToCart" 
                     Clicked="BtnAddToCart_Clicked"/>
 

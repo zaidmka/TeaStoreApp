@@ -8,16 +8,18 @@ namespace TeaStoreApp.Pages;
 public partial class CartPage : ContentPage
 {
     private ObservableCollection<ShoppingCartItem> _shoppingCartItems = new ObservableCollection<ShoppingCartItem>();
-	public CartPage()
-	{
-		InitializeComponent();
-	}
+    public CartPage()
+    {
+        InitializeComponent();
+    }
     protected override void OnAppearing()
     {
+        EmptyGrid.IsVisible = true;
+        ContentGrid.IsVisible = false;
         base.OnAppearing();
         GetShoppingCartItems();
         bool address = Preferences.ContainsKey("address");
-        if(address)
+        if (address)
         {
             LblAddress.Text = Preferences.Get("address", string.Empty);
         }
@@ -31,10 +33,23 @@ public partial class CartPage : ContentPage
     {
         _shoppingCartItems.Clear();
         var shoppingCartItems = await ApiService.GetShoppingCartItems(Preferences.Get("userid", 0));
-        foreach(var item in shoppingCartItems)
+        if (shoppingCartItems.Count>0)
         {
-            _shoppingCartItems.Add(item);
+            foreach (var item in shoppingCartItems)
+            {
+                _shoppingCartItems.Add(item);
+            }
+            EmptyGrid.IsVisible = false;
+            ContentGrid.IsVisible = true;
+            PlaceOrderbutton.IsVisible = true;
         }
+        else
+        {
+            _shoppingCartItems.Clear();
+            EmptyGrid.IsVisible = false;
+            ContentGrid.IsVisible = true;
+        }
+
         CvCart.ItemsSource = _shoppingCartItems;
         UpdateTotalPrice();
     }
@@ -46,7 +61,7 @@ public partial class CartPage : ContentPage
     }
 
 
-    private async  void UpdateCartQuantity(int productId,string action)
+    private async void UpdateCartQuantity(int productId, string action)
     {
         var response = await ApiService.UpdateCartQuantity(productId, action);
         if (response) return;
@@ -72,11 +87,11 @@ public partial class CartPage : ContentPage
 
     private void BtnIncrease_Clicked(object sender, EventArgs e)
     {
-        if(sender is Button button && button.BindingContext is ShoppingCartItem shoppingCartItem)
+        if (sender is Button button && button.BindingContext is ShoppingCartItem shoppingCartItem)
         {
             shoppingCartItem.Qty++;
             UpdateTotalPrice();
-            UpdateCartQuantity(shoppingCartItem.ProductId,"increase");
+            UpdateCartQuantity(shoppingCartItem.ProductId, "increase");
         }
     }
 
@@ -87,6 +102,7 @@ public partial class CartPage : ContentPage
             _shoppingCartItems.Remove(shoppingCartItem);
             UpdateTotalPrice();
             UpdateCartQuantity(shoppingCartItem.ProductId, "delete");
+            if(_shoppingCartItems.Count == 0) PlaceOrderbutton.IsVisible = false;
         }
     }
 

@@ -6,18 +6,14 @@
     xmlns:local="clr-namespace:TeaStoreApp"
     xmlns:pages="clr-namespace:TeaStoreApp.Pages"
     Shell.FlyoutBehavior="Disabled"
-    Shell.TabBarTitleColor="red"
-
-    
-    
     >
 
     <TabBar>
-        <Tab Title="Home" Icon="home">
+        <Tab Title="Home" Icon="house">
             <ShellContent ContentTemplate="{DataTemplate pages:HomePage}"/>
         </Tab>
 
-        <Tab Title="Cart" Icon="cart">
+        <Tab Title="Cart" Icon="cart_empty">
             <ShellContent ContentTemplate="{DataTemplate pages:CartPage}"/>
         </Tab>
 
@@ -25,12 +21,10 @@
             <ShellContent ContentTemplate="{DataTemplate pages:FavoritePage}"/>
         </Tab>
 
-        <Tab Title="Profile" Icon="profile">
+        <Tab Title="Profile" Icon="person">
             <ShellContent ContentTemplate="{DataTemplate pages:ProfilePage}"/>
         </Tab>
-        <Tab Title="Maui" Icon="dotnet_bot">
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
-        </Tab>
+
         <!--<ShellContent
             Title="Home"
             Icon="home"

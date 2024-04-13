@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Core;
 using TeaStoreApp.Models;
 using TeaStoreApp.Services;
 
@@ -5,21 +6,35 @@ namespace TeaStoreApp.Pages;
 
 public partial class HomePage : ContentPage
 {
-	public HomePage()
+    public HomePage()
 	{
 		InitializeComponent();
-		
-		LblUserName.Text= "Hi " + Preferences.Get("username",string.Empty);
 
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if (Application.Current.RequestedTheme == AppTheme.Light)
+        {
+            StatusBarStyle.StatusBarStyle = CommunityToolkit.Maui.Core.StatusBarStyle.DarkContent;
+        }
+        else if (Application.Current.RequestedTheme == AppTheme.Dark)
+        {
+            StatusBarStyle.StatusBarStyle = CommunityToolkit.Maui.Core.StatusBarStyle.LightContent;
+        }
+        LblUserName.Text = "Hi " + Preferences.Get("username", string.Empty);
+
+        EmptyGrid.IsVisible = true;
+        ContentGrid.IsVisible = false;
         GetCategories();
 
-		GetTrendingProducts();
+        GetTrendingProducts();
 
-		GetBestSellingProducts();
-
-
-	}
-
+        GetBestSellingProducts();
+        EmptyGrid.IsVisible = false;
+        ContentGrid.IsVisible = true;
+    }
     private async void GetBestSellingProducts()
     {
         var products = await ApiService.GetProducts("bestselling", string.Empty);
@@ -53,7 +68,7 @@ public partial class HomePage : ContentPage
     {
         var currentSelection = e.CurrentSelection.FirstOrDefault() as Product;
         if (currentSelection == null) return;
-        Navigation.PushAsync(new ProductDetailPage(currentSelection.Id));
+        Navigation.PushAsync(new ProductDetailPage(currentSelection.Id, currentSelection.Name));
         ((CollectionView)sender).SelectedItem = null;
     }
 
@@ -61,7 +76,7 @@ public partial class HomePage : ContentPage
     {
         var currentSelection = e.CurrentSelection.FirstOrDefault() as Product;
         if (currentSelection == null) return;
-        Navigation.PushAsync(new ProductDetailPage(currentSelection.Id));
+        Navigation.PushAsync(new ProductDetailPage(currentSelection.Id, currentSelection.Name));
         ((CollectionView)sender).SelectedItem = null;
     }
 }

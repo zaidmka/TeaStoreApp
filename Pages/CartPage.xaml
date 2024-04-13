@@ -1,59 +1,90 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:TeaStoreApp.Views"
              x:Class="TeaStoreApp.Pages.CartPage"
-             Title="Cart">
 
-    <Grid RowDefinitions="Auto,8*,Auto,Auto"
+             Shell.NavBarIsVisible="false"
+             >
+
+    <Grid BackgroundColor="Transparent" RowDefinitions="auto,*">
+        <Grid Grid.Row="0">
+            <Label Text="Cart" FontSize="Title" FontFamily="InterBold"
+                   HorizontalTextAlignment="Center">
+            </Label>
+        </Grid>
+        <Grid  x:Name="EmptyGrid"
+               RowDefinitions="auto,auto"
+               Grid.Row="1"
+               >
+            <views:SkeletonLoadingView Grid.Row="0"/>
+            <views:SkeletonLoadingView Grid.Row="1"/>
+
+        </Grid>
+        <Grid RowDefinitions="Auto,8*,Auto,Auto"
           Margin="20"
-          RowSpacing="20">
+          RowSpacing="20"
+              x:Name="ContentGrid"
+              Grid.Row="1"
+              >
 
-        <CollectionView Grid.Row="1"
+            <CollectionView Grid.Row="1"
                         Margin="0,0,0,0"
                         x:Name="CvCart">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10"
+                <CollectionView.EmptyView>
+                    <Label Text="No items in cart,Shop Something First!"
+               HorizontalOptions="Center"
+               VerticalOptions="FillAndExpand"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10"
                                    Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10"
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10"
                            CornerRadius="10"
                            BorderColor="White"
                            BackgroundColor="White">
 
-                        <Grid RowDefinitions="Auto,Auto,Auto"
+                            <Grid RowDefinitions="Auto,Auto,Auto"
                               ColumnDefinitions="3*,6*,1*"
                               RowSpacing="5"
-                              ColumnSpacing="20">
-                            <Frame Padding="0"
+                              ColumnSpacing="20"
+                              
+                             >
+                                <Frame Padding="0"
                                    HorizontalOptions="Start"
                                    CornerRadius="15"
                                    Grid.Row="0"
                                    Grid.RowSpan="3"
                                    Grid.Column="0"
                                    HeightRequest="80"
-                                   WidthRequest="80">
+                                   WidthRequest="80"
+                                   IsClippedToBounds="True"
+                                   >
 
-                                <Image Aspect="Fill"
+                                    <Image Aspect="Fill"
                                        Source="{Binding FullImageUrl}"/>
-                            </Frame>
-                            <Label Grid.Row="0"
+                                </Frame>
+                                <Label Grid.Row="0"
                                    Grid.Column="1"
                                    Grid.ColumnSpan="2"
-                                   FontSize="Subtitle"
+                                   FontSize="Small"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center" 
-                                   Text="{Binding ProductName}"/>
-                            <Label Grid.Row="1"
+                                   Text="{Binding ProductName}"
+                                       />
+                                <Label Grid.Row="1"
                                    Grid.Column="1"
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center" 
                                    Text="{Binding Price,StringFormat='{0:C0}'}"/>
-                            <HorizontalStackLayout Grid.Row="2"
+                                <HorizontalStackLayout Grid.Row="2"
                                                    Grid.Column="1"
                                                    Spacing="10">
-                                <Button 
+                                    <Button 
                                         MaximumWidthRequest="25"
                                         MinimumWidthRequest="25"
                                         MaximumHeightRequest="25"
@@ -70,11 +101,11 @@
                                         VerticalOptions="Center"
                                         x:Name="BtnDecrease"
                                         Clicked="BtnDecrease_Clicked"/>
-                                <Label x:Name="LblQty"
+                                    <Label x:Name="LblQty"
                                        TextColor="#80574D"
                                        VerticalTextAlignment="Center" 
                                        Text="{Binding Qty}"/>
-                                <Button 
+                                    <Button 
                                         MaximumWidthRequest="25"
                                         MinimumWidthRequest="25"
                                         MaximumHeightRequest="25"
@@ -88,8 +119,8 @@
                                         VerticalOptions="Center"
                                         x:Name="BtnIncrease"
                                         Clicked="BtnIncrease_Clicked"/>
-                            </HorizontalStackLayout>
-                            <ImageButton Grid.Row="2"
+                                </HorizontalStackLayout>
+                                <ImageButton Grid.Row="2"
                                          Grid.Column="2"
                                          MaximumWidthRequest="25"
                                          MinimumWidthRequest="25"
@@ -101,96 +132,105 @@
                                          VerticalOptions="Center"
                                          x:Name="BtnDelete"
                                          Clicked="BtnDelete_Clicked"/>
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-        <Frame Grid.Row="2"
+            <Frame Grid.Row="2"
                Padding="10"
                BackgroundColor="White"
                BorderColor="White">
-            <Grid RowDefinitions="Auto,Auto"
+                <Grid RowDefinitions="Auto,Auto"
                   ColumnDefinitions="8*,2*">
 
-                <Label Grid.Row="0"
+                    <Label Grid.Row="0"
                        Grid.Column="0"
                        Text="Your Delivery Address"
-                       FontAttributes="Bold"
-                       VerticalOptions="Start" />
-                <ImageButton Grid.Row="0"
+                       FontFamily="InterBold"
+                       VerticalOptions="Start" 
+                       FontSize="Medium"
+                       TextColor="Black"
+                       />
+                    <Button
+                   Grid.Row="0"
                          Grid.Column="1"
-                         Aspect="AspectFit"
                          Padding="0"
-                         MaximumWidthRequest="25"
-                         MinimumWidthRequest="25"
-                         MaximumHeightRequest="25"
-                         MinimumHeightRequest="25"
-                         HorizontalOptions="End"
-                         VerticalOptions="Start"
-                         Source="edit.png"
+                         MaximumWidthRequest="35"
+                         MinimumWidthRequest="35"
+                         MaximumHeightRequest="35"
+                         MinimumHeightRequest="35"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         ImageSource="location"
                          x:Name="BtnEditAddress" 
+                         BackgroundColor="Transparent"
                          Clicked="BtnEditAddress_Clicked"/>
 
-                <Label Grid.Row="1"
+                    <Label Grid.Row="1"
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
-                       x:Name="LblAddress" />
-            </Grid>
-        </Frame>
+                       x:Name="LblAddress" 
+                       TextColor="Black"/>
+                </Grid>
+            </Frame>
 
-        <Frame Grid.Row="3"
+            <Frame Grid.Row="3"
                Padding="10"
                BorderColor="Transparent"
-               BackgroundColor="#18565f">
-            <Grid RowDefinitions="Auto,Auto"
+               BackgroundColor="#512BD4"
+               IsVisible="false"
+               x:Name="PlaceOrderbutton">
+                <Grid RowDefinitions="Auto,Auto"
                   ColumnDefinitions="5*,5*">
-                <Label Grid.Row="0"
+                    <Label Grid.Row="0"
                        Grid.Column="0"
                        Text="Total Price"
                        TextColor="White"
                        Margin="10,0,0,0" />
-                <Label Grid.Row="1"
+                    <Label Grid.Row="1"
                        Grid.Column="0"
                        TextColor="White"
                        Margin="10,0,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="$"
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="$"
                                       TextColor="White" />
-                                <Span x:Name="LblTotalPrice"
+                                    <Span x:Name="LblTotalPrice"
                                       TextColor="White" />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <HorizontalStackLayout  Grid.Row="0"
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <HorizontalStackLayout  Grid.Row="0"
                                         HorizontalOptions="End"
                                         Margin="0,0,10,0"
                                         Grid.RowSpan="2"
                                         Grid.Column="1"
-                                        Spacing="2">
-                    <Label Text="Place Order "
+                                        Spacing="2"
+                                        >
+                        <Label Text="Place Order "
                            Padding="0"
                            VerticalOptions="Center"
-                           BackgroundColor="#18565f"
                            TextColor="White" />
-                    <Image Source="rightarrow"
+                        <Image Source="rightarrow"
                                         MaximumWidthRequest="30"
                                         MinimumWidthRequest="30"
                                         MaximumHeightRequest="30"
                                         MinimumHeightRequest="30"
                            VerticalOptions="Center" />
 
-                    <HorizontalStackLayout.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="TapPlaceOrder"
-                                              Tapped="TapPlaceOrder_Tapped"/>
-                    </HorizontalStackLayout.GestureRecognizers>
-                </HorizontalStackLayout>
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapPlaceOrder"
+                                              Tapped="TapPlaceOrder_Tapped"
+                                              />
+                        </HorizontalStackLayout.GestureRecognizers>
+                    </HorizontalStackLayout>
 
-            </Grid>
-        </Frame>
+                </Grid>
+            </Frame>
+        </Grid>
     </Grid>
 </ContentPage>

@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeaStoreApp.Pages.ProfilePage"
-                          Shell.NavBarIsVisible="false"
+             Shell.NavBarIsVisible="false"
 >
     <Grid RowDefinitions="Auto,5*,1*"
-          RowSpacing="0">
+          RowSpacing="0" BackgroundColor="Transparent">
         <VerticalStackLayout Grid.Row="0"
-                             BackgroundColor="#18565f"
+                             BackgroundColor="Transparent"
                              VerticalOptions="Start"
                              Spacing="5"
                              Padding="10">
@@ -22,7 +22,8 @@
 
             <Label x:Name="LblUserName"
                    HorizontalOptions="Center"
-                   TextColor="White" />
+                   FontSize="Large"
+                   FontFamily="InterBold"/>
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Row="1"
                              Margin="20"
@@ -59,8 +60,8 @@
                 Text="Logout"
                 FontSize="Medium"
                 HorizontalOptions="Center"
-                BackgroundColor="Transparent"
-                TextColor="Red"
+                TextColor="{AppThemeBinding Dark={StaticResource Red100Accent}, Light={StaticResource Red300Accent}}"
+                Background="Transparent"
                 x:Name="BtnLogout"
                 Clicked="BtnLogout_Clicked"/>
     </Grid>

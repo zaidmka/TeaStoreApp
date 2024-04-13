@@ -17,7 +17,7 @@ public partial class FavoritePage : ContentPage
     {
         var currentSelection = e.CurrentSelection.FirstOrDefault() as BookmarkProduct;
         if (currentSelection == null) return;
-        Navigation.PushAsync(new ProductDetailPage(currentSelection.ProductId));
+        Navigation.PushAsync(new ProductDetailPage(currentSelection.ProductId,currentSelection.Name));
         ((CollectionView)sender).SelectedItem = null;
     }
     protected override void OnAppearing()

@@ -2,30 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeaStoreApp.Pages.AddressPage"
-                          Shell.NavBarIsVisible="false"
-
+             Shell.NavBarIsVisible="false"
              >
     <VerticalStackLayout Margin="20"
                          Spacing="10"
-                         VerticalOptions="Start">
+                         VerticalOptions="Start"
+                         >
         <Label Text="Delivery Address"
                HorizontalOptions="Center"
                FontSize="Large" />
 
         <Frame Padding="10"
-               BackgroundColor="White">
+               BackgroundColor="White" BorderColor="Black">
             <VerticalStackLayout
                 Spacing="10">
 
                 <Entry Placeholder="Full name"
-                       x:Name="EntName" />
+                       x:Name="EntName" TextColor="Black"/>
 
                 <Entry Placeholder="Phone Number"
-                       x:Name="EntPhone" />
+                       x:Name="EntPhone" TextColor="Black"/>
 
                 <Entry Placeholder="Address"
                        HeightRequest="100"
-                       x:Name="EntAddress" />
+                       x:Name="EntAddress" TextColor="Black"/>
 
             </VerticalStackLayout>
         </Frame>
@@ -34,6 +34,22 @@
                 FontSize="Medium"
                 Clicked="BtnSave_Clicked"
                 />
+        <Button x:Name="BtnCancel"
+        Text="Cancel"
+        FontSize="Medium"
+                TextColor="Red"
+                Clicked="BtnCancel_Clicked"
+        />
+        <Button
+            x:Name="GeoLocationBtn"
+            Text="Get Location"
+            Clicked="GeoLocationBtn_Clicked"            
+            />
+        <Button
+            x:Name="MapBtn"
+            Text="Show on Map"
+            Clicked="MapBtn_Clicked"
+            />
 
     </VerticalStackLayout>
 </ContentPage>

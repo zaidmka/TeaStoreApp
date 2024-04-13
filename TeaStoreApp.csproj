@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>TeaStoreApp</ApplicationTitle>
+		<ApplicationTitle>Tea Store</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.teastoreapp</ApplicationId>
@@ -35,7 +35,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#000000" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -49,22 +49,34 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Platforms\Android\Resources\values\Styles.xml" />
+	  <None Remove="Resources\Fonts\Inter-Black.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-ExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Light.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Inter-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Thin.ttf" />
 	  <None Remove="Resources\Images\cart.png" />
-	  <None Remove="Resources\Images\cart_25.png" />
+	  <None Remove="Resources\Images\cart_empty.svg" />
+	  <None Remove="Resources\Images\cart_fill.svg" />
 	  <None Remove="Resources\Images\delete.png" />
 	  <None Remove="Resources\Images\edit.png" />
-	  <None Remove="Resources\Images\edit_25.png" />
 	  <None Remove="Resources\Images\faq.png" />
-	  <None Remove="Resources\Images\heart.png" />
-	  <None Remove="Resources\Images\heartfill.png" />
-	  <None Remove="Resources\Images\heart_25.png" />
+	  <None Remove="Resources\Images\heart.svg" />
+	  <None Remove="Resources\Images\heartfill.svg" />
+	  <None Remove="Resources\Images\highlighter.svg" />
 	  <None Remove="Resources\Images\home.png" />
-	  <None Remove="Resources\Images\home_25.png" />
+	  <None Remove="Resources\Images\home.svg" />
+	  <None Remove="Resources\Images\house.svg" />
 	  <None Remove="Resources\Images\leftarrow.png" />
+	  <None Remove="Resources\Images\location.svg" />
 	  <None Remove="Resources\Images\orders.png" />
+	  <None Remove="Resources\Images\person.svg" />
 	  <None Remove="Resources\Images\profile.png" />
 	  <None Remove="Resources\Images\profilesettings.png" />
-	  <None Remove="Resources\Images\profile_25.png" />
 	  <None Remove="Resources\Images\rightarrow.png" />
 	  <None Remove="Resources\Images\storelogo.png" />
 	  <None Remove="Resources\Images\uploadphoto.png" />
@@ -72,6 +84,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.1.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
@@ -112,6 +125,15 @@
 	  <MauiXaml Update="Pages\SignupPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\SkeletonLoadingView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="ViewModel\" />
+	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionTeaStoreAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

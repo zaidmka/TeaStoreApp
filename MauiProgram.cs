@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using TeaStoreApp.Services;
 
 namespace TeaStoreApp
 {
@@ -10,18 +11,17 @@ namespace TeaStoreApp
             var builder = MauiApp.CreateBuilder();
             builder.UseMauiApp<App>().ConfigureFonts(fonts =>
             {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            }).ConfigureMauiHandlers(h =>
-            {
-#if IOS
-                h.AddHandler<Shell, TeaStoreApp.Platforms.iOS.CustomShellRenderer>();
-
-#endif
+                //              fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                //              fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("Inter-Regular.ttf", "InterRegular");
+                fonts.AddFont("Inter-Bold.ttf", "InterBold");
             }).UseMauiCommunityToolkit();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
+            builder.Services.AddSingleton<IMap>(Map.Default);
+
             return builder.Build();
         }
     }

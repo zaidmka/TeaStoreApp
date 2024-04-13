@@ -28,5 +28,10 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is required to find places nearby</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location is required for navigation</string>
 </dict>
 </plist>
+
